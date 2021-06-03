@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="help">
+    <span v-bind:title="happly">
+        ceshiyixia111
+    </span>
+    <br>
+    {{message}}
+</div>
+<div id="one">
+    <h1 v-if="good===1">YES</h1>
+    <h2 v-else-if="good===2">I SEE</h2>
+    <h3 v-else>NO</h3>
+</div>
+<div id="two">
+    <li v-for="(item,index) in items">
+        {{item.message}}-------{{index}}
+    </li>
+</div>
+<br>
+<div id="three">
+    <button v-on:click="sayHi">click me</button>
+</div>
+<br>
+<div id="four">
+    <input type="text" v-model="message">{{message}}
+    <br>
+    <br>
+    <textarea v-model="message"></textarea>{{message}}
+    <br>
+    <input type="radio" value="男" name="sex" v-model="sex">男
+    <input type="radio" value="女" name="sex" v-model="sex">女
+    <br/>
+    选择的是: {{sex}}
+    <br/>
+    <select v-model="word">
+        <option disabled value="">--请选择--</option>
+        <option>A</option>
+        <option>B</option>
+        <option>C</option>
+        <option>D</option>
+    </select>
+    {{word}}
+</div>
+<br>
+<div id="five">
+    <zdy v-for="item in items" v-bind:z="item"></zdy>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.min.js"></script>
+<script>
+    var vm = new Vue({
+        el: "#help",
+        data: {
+            happly: "这是光标停留时的",
+            message: "god"
+        }
+    });
+    var vm1 = new Vue({
+        el: "#one",
+        data: {
+            good: 1
+        }
+    });
+    var vm2 = new Vue({
+        el: "#two",
+        data: {
+            items: [
+                {message: "qwe"},
+                {message: "asd"},
+                {message: "zxc"}
+            ]
+        }
+    });
+    var vm3 = new Vue({
+        el: "#three",
+        data: {
+            message: "happy"
+        },
+        methods: {
+            sayHi: function () {
+                for (var i = 0; i < 5; i++) {
+                    alert(this.message + "-------------" + i)
+                }
+            }
+        }
+    });
+    var vm4 = new Vue({
+        el: "#four",
+        data: {
+            message: "1234",
+            sex: "",
+            word: ""
+        }
+    });
+    Vue.component("zdy",{
+        props:['temp'],
+        template:'<li>{{temp}}的自定义模板</li>'
+    })
+    var vm5 = new Vue({
+        el:"#five",
+        data:{
+            items:["c","c#","c++","java","python","php"]
+        }
+    })
+</script>
+</body>
+
+</html>
